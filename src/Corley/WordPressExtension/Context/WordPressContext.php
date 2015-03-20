@@ -13,8 +13,11 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Event\SuiteEvent,
     Behat\Behat\Event\ScenarioEvent;
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
+// removed to make this use composer's autoloader
+//require_once 'PHPUnit/Autoload.php';
+//require_once 'PHPUnit/Framework/Assert/Functions.php';
+use PHPUnit_Framework_Assert as Assert;
+
 
 class WordPressContext extends MinkContext
 {
@@ -43,7 +46,7 @@ class WordPressContext extends MinkContext
             "DROP DATABASE IF EXISTS " . DB_NAME . ";",
             "CREATE DATABASE " . DB_NAME . ";",
         )));
-        assertTrue($value);
+        Assert::assertTrue($value);
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         wp_install($name, $username, $email, true, '', $password);
     }
@@ -113,7 +116,7 @@ class WordPressContext extends MinkContext
         $currentPage->fillField('user_pass', $password);
         $currentPage->findButton('wp-submit')->click();
 
-        assertTrue($this->getSession()->getPage()->hasContent('Dashboard'));
+        Assert::assertTrue($this->getSession()->getPage()->hasContent('Dashboard'));
     }
 
 }
