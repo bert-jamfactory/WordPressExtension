@@ -13,8 +13,9 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Event\SuiteEvent,
     Behat\Behat\Event\ScenarioEvent;
 
-require_once 'PHPUnit/Autoload.php';
-require_once 'PHPUnit/Framework/Assert/Functions.php';
+// removed to make this use composer's autoloader
+//require_once 'PHPUnit/Autoload.php';
+//require_once 'PHPUnit/Framework/Assert/Functions.php';
 
 class WordPressContext extends MinkContext
 {
